@@ -5,7 +5,7 @@
     <h2 :style="style">
       {{ simpleDateTimeSet }}{{ simpleDateSet }}{{ simpleTimeSet }}{{ advancedTimeSet }}
     </h2>
-  </div>
+  </div   >
 </template>
 
 <script>

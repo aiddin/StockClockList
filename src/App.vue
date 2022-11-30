@@ -5,21 +5,16 @@
 <div class="stockbg">
   <tr>
     <th>
-      
-       
     <td><v-text>hehe</v-text></td>
     <tc-clock 
-        
     :serverDate="serverDate" 
     :glow="glow"
-   
     :simpleTime="simpleTime" 
     /></th>
-    <th></th>
+  
     <tc-clock 
     :serverDate="serverDate" 
     :glow="glow"
-   
     :simpleTime="simpleTime" 
     />
     <br>
@@ -35,7 +30,6 @@
     <tc-clock 
     :serverDate="serverDate" 
     :glow="glow"
-   
     :advancedTime="advancedTime" 
     />
   </table>
@@ -47,7 +41,7 @@ import TcClock from './components/TcClock.vue'
 const date = new Date();
 export default {
   name: 'App',
-  components: {
+  components: { 
     TcClock,
   },
   data() {
