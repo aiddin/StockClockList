@@ -82,7 +82,7 @@ export default {
 </script>
 <style>
 .stockbg{
-  background-color: #000000;
+  background-color: #2b2b2b;
   
 }
 </style>
