@@ -2,7 +2,7 @@
 :simpleTime="simpleTime"
 :simpleDateTime="simpleDateTime" -->
 <template>
-<div>
+<div class="stockbg">
   <tr>
     <th>
       
@@ -28,7 +28,6 @@
     <tc-clock 
     :serverDate="serverDate" 
     :glow="glow"
-   
     :simpleTime="simpleTime" 
     />
     <br>
@@ -82,3 +81,9 @@ export default {
   },
 };
 </script>
+<style>
+.stockbg{
+  background-color: #000000;
+  
+}
+</style>
