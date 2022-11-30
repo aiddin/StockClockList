@@ -7,8 +7,8 @@
     <th>
       
        
-        <td><v-text>hehe</v-text></td>
-        <tc-clock 
+    <td><v-text>hehe</v-text></td>
+    <tc-clock 
         
     :serverDate="serverDate" 
     :glow="glow"
