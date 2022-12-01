@@ -1,11 +1,10 @@
-
 <template>
   <div id="clock">
     <h1 :style="style">{{ advancedDateSet }}</h1>
     <h2 :style="style">
       {{ simpleDateTimeSet }}{{ simpleDateSet }}{{ simpleTimeSet }}{{ advancedTimeSet }}
     </h2>
-  </div   >
+  </div>
 </template>
 
 <script>
@@ -15,10 +14,7 @@ export default defineComponent({
   //props from TcData component
   props: [
     "serverDate",
-
     "glow",
-
-
     "simpleTime",
     "simpleDate",
     "simpleDateTime",
@@ -42,7 +38,6 @@ export default defineComponent({
 
       dateServer: this.serverDate,
     };
-  
   },
 
   methods: {
@@ -101,7 +96,7 @@ export default defineComponent({
         return set;
       } else return (set = "");
     },
-   
+
     //setting client time and date
     clientTime() {
       const dateLocal1 = new Date();
@@ -115,6 +110,7 @@ export default defineComponent({
       const timeDiff = dateLocal1.getTime() - dateServer1.getTime();
       return timeDiff;
     },
+
     //set date time for set interval
     setDateTime() {
       this.simpleDateTimeSet = this.setSimpleDateTime();
@@ -126,7 +122,6 @@ export default defineComponent({
   },
 
   computed: {
-
     //styling for glow fx
     style() {
       if (this.glow == undefined) return "";
@@ -141,7 +136,6 @@ export default defineComponent({
   mounted() {
     setInterval(() => {
       this.setDateTime();
-     
     }, 0);
   },
   beforeUnmount() {
