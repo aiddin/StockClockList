@@ -132,7 +132,7 @@ export default defineComponent({
       if (this.glow == undefined) return "";
       else
         return {
-          "text-shadow": "0 0 20px rgb(39, 83, 149), 0 0 20px rgba(10, 175, 230, 0)",
+          "text": "0 0 20px rgb(39, 83, 149), 0 0 20px rgba(10, 175, 230, 0)",
           color: this.glow,
         };
     },
@@ -160,7 +160,7 @@ export default defineComponent({
   position: sticky;
   left: 0;
   top: 0;
-  color: rgb(243, 243, 243);
+  color: greenyellow;
   transition: 0.2s;
   text-align: justify;
   font-family: "Oxygen", monospace;
@@ -168,13 +168,13 @@ export default defineComponent({
 }
 #clock h1 {
   transition: 0.2s;
-  font-size: 5vw;
+  font-size: 5vh;
   margin: 0;
   padding: 0;
 }
 #clock h2 {
   transition: 0.2s;
-  font-size: 8vw;
+  font-size: 8vh ;
   margin: 0;
   padding: 0;
 }
