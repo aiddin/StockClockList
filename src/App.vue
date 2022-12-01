@@ -3,13 +3,13 @@
 :simpleDateTime="simpleDateTime" -->
 <template>
 <div class="stockbg">
-  <table>
+  <table class ="huh">
     <tbody>
     <tr v-for="(persons) in persons" :key="persons.name">
 
-      <td>{{persons.name}}</td>
-      <td>{{persons.age}}</td>
-      <td><tc-clock 
+      <td class="tdstyle">{{persons.name}}</td>
+      <td class="tdstyle">{{persons.age}}</td>
+      <td class="tdstyle"><tc-clock 
         :serverDate="serverDate" 
         :glow="glow"
         :simpleTime="simpleTime" 
@@ -75,5 +75,17 @@ export default {
 .stockbg{
   background-color: #2b2b2b;
   
+}
+.tdstyle{
+  
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin : 150vw;
+  padding: 50px;
+}
+.huh{
+  margin: 0 auto;
+  padding: 50px;
 }
 </style>
