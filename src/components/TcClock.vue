@@ -29,14 +29,13 @@ export default defineComponent({
   data() {
     return {
       timeDiff: this.timeDiffer(),
-
+      
       advancedTimeBool: this.advancedTime,
       advancedDateBool: this.advancedTime,
 
       simpleTimeSet: this.setSimpleTime(),
       simpleDateSet: this.setSimpleDate(),
       simpleDateTimeSet: this.setSimpleDateTime(),
-
       advancedTimeSet: this.setAdvancedTime(),
       advancedDateSet: this.setAdvancedDate(),
 
@@ -44,7 +43,14 @@ export default defineComponent({
     };
   
   },
-
+watch :{
+timeDiff(newTimeDiff,oldTimeDiff){
+  if (newTimeDiff !== oldTimeDiff){
+    this.timeDiff = newTimeDiff;
+  
+  }
+}
+},
   methods: {
     //setting date time format
     setSimpleDateTime() {
@@ -109,12 +115,13 @@ export default defineComponent({
       return dateLocal1;
     },
     //setting time difference
-    timeDiffer() {
-      const dateLocal1 = new Date();
-      const dateServer1 = this.serverDate;
-      const timeDiff = dateLocal1.getTime() - dateServer1.getTime();
-      return timeDiff;
-    },
+      timeDiffer() {
+        const dateLocal1 = new Date();
+        const dateServer1 = this.serverDate;
+        const timeDiff = dateLocal1.getTime() - dateServer1.getTime();
+        console.log(timeDiff)
+        return timeDiff;
+      },
     //set date time for set interval
     setDateTime() {
       this.simpleDateTimeSet = this.setSimpleDateTime();
@@ -135,14 +142,21 @@ export default defineComponent({
           "text": "0 0 20px rgb(39, 83, 149), 0 0 20px rgba(10, 175, 230, 0)",
           color: this.glow,
         };
-    },
+    }
   },
+    // watch: {
+    // serverDate: function (newVal, oldVal) {
+    //   this.dateServer = newVal;
+    //   this.timeDiff = this.timeDiffer();
+    // },
+    // },
 
   mounted() {
     setInterval(() => {
       this.setDateTime();
      
-    }, 0);
+    }, 1000);
+   
   },
   beforeUnmount() {
     clearInterval(this.setDateTime);
@@ -164,7 +178,7 @@ export default defineComponent({
   transition: 0.2s;
   text-align: justify;
   font-family: "Oxygen", monospace;
-  background-color: rgba(34, 34, 34, 0.801);
+  background-color: rgba(34, 34, 34, 0);
 }
 #clock h1 {
   transition: 0.2s;

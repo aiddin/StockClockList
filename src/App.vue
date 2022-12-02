@@ -2,28 +2,12 @@
 :simpleTime="simpleTime"
 :simpleDateTime="simpleDateTime" -->
 <template>
-<div class="stockbg">
-  <table class ="huh">
-    <tbody>
-    <tr v-for="(exch) in exch" :key="exch.status">
-
-      <td class="tdstyle" :style="testchange">{{exch.status}}</td>
-      <td class="tdstyle">{{exch.name}}</td>
-      <td class="tdstyle"><tc-clock 
+<tc-clock 
         :serverDate="serverDate" 
         :glow="glow"
-        :simpleTime="simpleTime" 
-        /></td>
-    </tr>
-  </tbody>
-
- 
-  
-  
-  
- 
-  </table>
-</div>
+        :advancedTime="advancedTime" 
+      
+> </tc-clock>
  
 </template>
 <script>
@@ -37,7 +21,7 @@ export default {
   },
   data() {
     return {
-      message: 'Hello this is GeeksforGeeks.',
+    
       glow:'',
       serverDate: date,
       simpleTime: true,
@@ -45,39 +29,36 @@ export default {
       simpleDateTime: true,
       advancedTime: true,
       exch: [
-          {name: 'Malaysia Exchange (MYX)', status: 1},
-          {name: 'Indonesia Exchange (IDX)', status: 2},
-          {name: 'Hong Kong Exchange (HKEX)', status: 3},
-          {name: 'Singapore Exchange (SGX)', status: 1}
+          {name: 'Malaysia Exchange (MYX)', status: '1', gmTime: '+8'},
+          {name: 'Indonesia Exchange (IDX)', status: '2', gmTime: '+7'},
+          {name: 'Hong Kong Exchange (HKEX)', status: '3', gmTime: '+8'},
+          {name: 'Singapore Exchange (SGX)', status: '1', gmTime: '+8'},// 1 hour == 3,600,000 milliseconds
     ],
     }
   },
   
   computed:{
-    testchange() {
-      if (this.exch.status == 1) {
-      console.log(this.exch.status);
-      return {
-        // "color": "blue"
+    // testchange() {
+    //   if (this.exch.status == 1) {
+    //   console.log(this.exch.status);
+    //   return {
+    //     // "color": "blue"
 
-      }
-    }
-      else
+    //   }
+    // }
+    //   else
        
-      console.log(this.exch.status);
-        return {
+    //   console.log(this.exch.status);
+    //     return {
          
-          "text-shadow": "0 0 20px rgb(39, 83, 149), 0 0 20px rgba(10, 175, 230, 0)",
-          color: "green",
+    //       "text-shadow": "0 0 20px rgb(39, 83, 149), 0 0 20px rgba(10, 175, 230, 0)",
+    //       color: "green",
           
-        };
-    },
+    //     };
+    // },
   },
   methods: {
     setDateTime() {
-      const date = new Date();
-
-      this.serverDate = date;
       this.glow = '';
       this.simpleDate = true;
       this.simpleTime = true;
@@ -85,12 +66,23 @@ export default {
       this.advancedTime = true;
       
     },
+    setServerDate() {
+      const date = new Date();
+      
+      console.log (-date.getTimezoneOffset()/60+'heh')//get utc time offset
+     date.setHours(date.getHours() + (-1) );
+      this.serverDate = date;
+    },
   },
 
   mounted() {
     setInterval(() => {
       this.setDateTime();
-    }, 0);
+    }, 1000);
+    //getUTChour
+    setInterval(() => {
+      this.setServerDate();
+    },1000);
   },
 };
 </script>
