@@ -5,19 +5,21 @@
 <tc-clock 
         :serverDate="serverDate" 
         :glow="glow"
-        :advancedTime="advancedTime" 
-      
+        :advancedTime="advancedTime"  
 > </tc-clock>
+<tc-stock-list :exch="exch"></tc-stock-list>
  
 </template>
 <script>
-import TcClock from './components/TcClock.vue'
+
+import TcStockList from './components/TcStockList.vue';
+
 const date = new Date();
 
 export default {
   name: 'App',
   components: { 
-    TcClock,
+    TcStockList,
   },
   data() {
     return {
@@ -29,10 +31,10 @@ export default {
       simpleDateTime: true,
       advancedTime: true,
       exch: [
-          {id:'MYX', name: 'Malaysia Exchange (MYX)', status: '1', gmTime: '+8'},
-          {id:'IDX',name: 'Indonesia Exchange (IDX)', status: '2', gmTime: '+7'},
-          {id:'HKEX',name: 'Hong Kong Exchange (HKEX)', status: '3', gmTime: '+8'},
-          {id:'SGX',name: 'Singapore Exchange (SGX)', status: '1', gmTime: '+8'},// 1 hour == 3,600,000 milliseconds
+          {id:'MYX', name: 'Malaysia Exchange (MYX)', status: '0', gmTime: '+8'},
+          {id:'IDX',name: 'Indonesia Exchange (IDX)', status: '1', gmTime: '+7'},
+          {id:'HKEX',name: 'Hong Kong Exchange (HKEX)', status: '2', gmTime: '+8'},
+          {id:'SGX',name: 'Singapore Exchange (SGX)', status: '0', gmTime: '+8'},// 1 hour == 3,600,000 milliseconds
     ],
     }
   },

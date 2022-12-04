@@ -6,6 +6,7 @@
                 <TcStockStat v-bind:icon="exch.status" />
             </th>
             <th class=" text-left w-1/10 ">
+                
                 <h1 class="text-2xl">{{(exch.name)}}</h1>
                 <a class="text-sm ">{{exch.gmTime}}</a>
             </th>
