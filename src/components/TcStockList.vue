@@ -9,20 +9,18 @@
                 <h1 class="text-2xl">{{(exch.name)}}</h1>
                 <a class="text-sm ">{{exch.gmTime}}</a>
             </th>
-            <th class="text-left ">
-                <TcChipList v-bind:exchanges="server.supportExchanges" />
-            </th>
+            
         </tr>
     
     </table>
     </template>
     
     <script>
-    import TcChipList from '../components/TcChipList.vue'
+    import TcClock from '../components/TcClock.vue'
     import TcStockStat from '../components/TcStockStat.vue'
     export default {
         components: {
-            TcChipList,
+            TcClock,
             TcStockStat
         },
         props: [
