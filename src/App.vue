@@ -29,10 +29,10 @@ export default {
       simpleDateTime: true,
       advancedTime: true,
       exch: [
-          {name: 'Malaysia Exchange (MYX)', status: '1', gmTime: '+8'},
-          {name: 'Indonesia Exchange (IDX)', status: '2', gmTime: '+7'},
-          {name: 'Hong Kong Exchange (HKEX)', status: '3', gmTime: '+8'},
-          {name: 'Singapore Exchange (SGX)', status: '1', gmTime: '+8'},// 1 hour == 3,600,000 milliseconds
+          {id:'MYX', name: 'Malaysia Exchange (MYX)', status: '1', gmTime: '+8'},
+          {id:'IDX',name: 'Indonesia Exchange (IDX)', status: '2', gmTime: '+7'},
+          {id:'HKEX',name: 'Hong Kong Exchange (HKEX)', status: '3', gmTime: '+8'},
+          {id:'SGX',name: 'Singapore Exchange (SGX)', status: '1', gmTime: '+8'},// 1 hour == 3,600,000 milliseconds
     ],
     }
   },
