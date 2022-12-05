@@ -147,7 +147,11 @@ export default defineComponent({
   //   this.timeDiff = this.timeDiffer();
   // },
   // },
-
+beforeMount() {
+    setInterval(() => {
+      this.timeDiffer(), this.clientTime();
+    }, 1000);
+  },
   mounted() {
     setInterval(() => {
       this.setDateTime();
