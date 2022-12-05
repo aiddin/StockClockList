@@ -1,24 +1,25 @@
-<template><div class="stockbg">
-  <table class="huh">
-    <tbody>
-    <tr v-for="exch in exch" :key="exch.id">
-        <td class="tdstyle">
+<template>
+  <div class="stockbg">
+    <table class="huh">
+      <tbody>
+        <tr v-for="exch in exch" :key="exch.id">
+          <td class="tdstyle">
             <tc-stock-stat :stat="exch.status" />
           </td>
-        <td class="tdstyle">
+          <td class="tdstyle">
             {{ exch.id }}
-        </td>
-      <td class="tdstyle">
-        {{ exch.name }}
-      </td>
-      <td>
-        <tc-clock :serverDate="serverDate" :glow="glow" :simpleTime="simpleTime">
-        </tc-clock>
-      </td>
-    </tr>
-</tbody>
-  </table>
-</div>
+          </td>
+          <td class="tdstyle">
+            {{ exch.name }}
+          </td>
+          <td>
+            <tc-clock :serverDate="serverDate" :glow="glow" :simpleTime="simpleTime">
+            </tc-clock>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>
@@ -30,30 +31,27 @@ export default {
     TcClock,
     TcStockStat,
   },
-  
-  props: ["exch"],
-  data(){
-    return{
 
+  props: ["exch"],
+  data() {
+    return {
       serverDate: date,
       simpleTime: true,
-     
-    }
+    };
   },
   methods: {
     setDateTime() {
-      this.glow = '';
+      this.glow = "";
       this.simpleDate = true;
       this.simpleTime = true;
       this.simpleDateTime = true;
       this.advancedTime = true;
-      
     },
     setServerDate() {
       const date = new Date();
-      
-      console.log (-date.getTimezoneOffset()/60+'heh')//get utc time offset
-     date.setHours(date.getHours() + (-1) );
+
+      console.log(-date.getTimezoneOffset() / 60 + "heh"); //get utc time offset
+      date.setHours(date.getHours() + -1);
       this.serverDate = date;
     },
   },
@@ -65,10 +63,9 @@ export default {
     //getUTChour
     setInterval(() => {
       this.setServerDate();
-    },1000);
+    }, 1000);
   },
-  }
-;
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -80,23 +77,20 @@ th {
   padding-bottom: 15px;
 }
 
-.stockbg{
+.stockbg {
   background-color: #2b2b2b;
-  
 }
-.tdstyle{
-  
+.tdstyle {
   color: #fff;
-  
+
   font-weight: 500;
-  margin : 150vw;
+  margin: 150vw;
   padding: 50px;
-  font-size :5vh;
+  font-size: 5vh;
   font-family: Oxygen, monospace;
 }
-.huh{
+.huh {
   margin: 0 auto;
   padding: 50px;
 }
-
 </style>
