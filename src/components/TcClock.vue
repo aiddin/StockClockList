@@ -9,7 +9,9 @@
 
 <script>
 import { defineComponent } from "vue";
-
+//TODO : add a prop to change the time zone 
+//USE TIME DIFFER ADD TO LOCAL TIME PROP
+//DETACH SERVER DATE & TIME FROM LOCAL DATE & TIME
 export default defineComponent({
   //props from TcData component
   props: [
@@ -26,6 +28,7 @@ export default defineComponent({
   data() {
     return {
       timeDiff: this.timeDiffer(),
+      localDate: this.clientDate(),
 
       advancedTimeBool: this.advancedTime,
       advancedDateBool: this.advancedTime,
