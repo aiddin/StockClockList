@@ -1,21 +1,24 @@
-<template>
-  <table class="stockbg">
+<template><div class="stockbg">
+  <table class="huh">
+    <tbody>
     <tr v-for="exch in exch" :key="exch.id">
-        <td>
-            <h1>{{ exch.id }}</h1>
+        <td class="tdstyle">
+            <tc-stock-stat :stat="exch.status" />
+          </td>
+        <td class="tdstyle">
+            {{ exch.id }}
         </td>
-      <td>
-        <tc-stock-stat :stat="exch.status" />
+      <td class="tdstyle">
+        {{ exch.name }}
       </td>
       <td>
-        <h1>{{ exch.name }}</h1>
-      </td>
-      <td>
-        <tc-clock :serverDate="serverDate" :glow="glow" :advancedTime="advancedTime">
+        <tc-clock :serverDate="serverDate" :glow="glow" :simpleTime="simpleTime">
         </tc-clock>
       </td>
     </tr>
+</tbody>
   </table>
+</div>
 </template>
 
 <script>
@@ -31,12 +34,10 @@ export default {
   props: ["exch"],
   data(){
     return{
-        glow:'',
+
       serverDate: date,
       simpleTime: true,
-      simpleDate: true,
-      simpleDateTime: true,
-      advancedTime: true,
+     
     }
   },
   methods: {
@@ -87,7 +88,7 @@ th {
   
   color: #fff;
   
-  font-weight: 600;
+  font-weight: 500;
   margin : 150vw;
   padding: 50px;
   font-size :5vh;
