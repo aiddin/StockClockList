@@ -77,7 +77,7 @@ export default {
     },
     setServerDate() {
       const date = new Date();
-        console.log(this.statColor+ "huhu please work");
+        
       
       date.setHours(date.getHours() + -1);
       this.serverDate = date;
@@ -91,7 +91,7 @@ export default {
     //getUTChour
     setInterval(() => {
       this.setServerDate();
-    }, 1000);
+    }, 0);
   },
 };
 </script>
