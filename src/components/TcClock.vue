@@ -28,7 +28,7 @@ export default defineComponent({
   data() {
     return {
       timeDiff: this.timeDiffer(),
-      localDate: this.clientDate(),
+      localDate: this.clientTime(),
 
       advancedTimeBool: this.advancedTime,
       advancedDateBool: this.advancedTime,
@@ -80,7 +80,7 @@ export default defineComponent({
           hour: "2-digit",
           minute: "2-digit",
           second: "numeric",
-        }).format(this.clientTime());
+        }).format(this.localDate);
         return set;
       } else return "";
     },
@@ -116,12 +116,13 @@ export default defineComponent({
     timeDiffer() {
       const dateLocal1 = new Date();
       const dateServer1 = this.serverDate;
-      const timeDiff = dateLocal1.getTime() - dateServer1.getTime();
+      const timeDiff =  dateServer1.getTime()- dateLocal1.getTime() ;
       console.log(timeDiff);
       return timeDiff;
     },
     //set date time for set interval
     setDateTime() {
+      this.localDate = this.clientTime();
       this.simpleDateTimeSet = this.setSimpleDateTime();
       this.simpleDateSet = this.setSimpleDate();
       this.simpleTimeSet = this.setSimpleTime();
@@ -147,16 +148,17 @@ export default defineComponent({
   //   this.timeDiff = this.timeDiffer();
   // },
   // },
-// beforeMount() {
-//     setInterval(() => {
-//       this.timeDiffer(), this.clientTime();
+beforeMount() {
+    
+      this.timeDiffer(), this.clientTime();
 
 
       
-//     }, 1000);
-//   },
+    
+  },
   mounted() {
     setInterval(() => {
+      
       this.setDateTime();
     }, 0);
   },
