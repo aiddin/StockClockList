@@ -1,5 +1,6 @@
 <template>
-        <div v-bind:status="status">
+        <div v-bind:stat="status">
+            {{ status.message }}
 
     </div>
 
@@ -8,15 +9,11 @@
     <script>
     export default {
         props: [
-            'icon'
+            'stat'
         ],
         data() {
             return {
-                status: {
-                    message: 'testmessage',
-                   
-                }
-    
+                message : this.status,
             }
         },
         created() {
@@ -24,20 +21,19 @@
         },
         methods: {
             test() {
-                if (this.icon == 0) {
+                if (this.stat == 0) {
                     this.status = {
                         message: 'open',
-                        color: 'bg-green-500'
                     }
-                } else if (this.icon == 1) {
+                } else if (this.stat == 1) {
                     this.status = {
                        message: 'close',
-                        color: 'bg-red-500'
+                       
                     }
-                } else {
+                } else if (this.stat == 2) {
                     this.status = {
                         message: 'break',
-                        color: 'bg-orange-500'
+                        
                     }
                 }
     
