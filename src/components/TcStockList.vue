@@ -13,7 +13,7 @@
             {{ exch.name }}
           </td>
           <td>
-            <tc-clock :serverDate="serverDate" :glow="glow" :simpleTime="simpleTime" :gmTime="gmTime">
+            <tc-clock :serverDate="serverDate" :glow="glow" :simpleTime="simpleTime" :GMT="GMT">
             </tc-clock>
           </td>
         </tr>
