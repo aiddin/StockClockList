@@ -150,6 +150,9 @@ export default defineComponent({
 beforeMount() {
     setInterval(() => {
       this.timeDiffer(), this.clientTime();
+
+
+      
     }, 1000);
   },
   mounted() {
