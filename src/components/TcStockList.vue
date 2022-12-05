@@ -1,9 +1,9 @@
 <template>
-  <div class="stockbg">
+  <div >
     <table class="huh">
       <tbody>
         <tr v-for="exch in exch" :key="exch.id">
-          <td class="tdstyle">
+          <td :style="styleTest" class="tdstyle">
             <tc-stock-stat :stat="exch.status" />
           </td>
           <td class="tdstyle">
@@ -13,7 +13,7 @@
             {{ exch.name }}
           </td>
           <td>
-            <tc-clock :serverDate="serverDate" :glow="glow" :simpleTime="simpleTime">
+            <tc-clock :serverDate="serverDate" :glow="glow" :simpleTime="simpleTime" :gmTime="gmTime">
             </tc-clock>
           </td>
         </tr>
@@ -32,15 +32,43 @@ export default {
     TcStockStat,
   },
 
-  props: ["exch"],
+  props: ["exch",],
   data() {
     return {
       serverDate: date,
       simpleTime: true,
+      statColor : this.exch.status,
     };
+  },
+
+  computed: {
+    styleTest(){
+        if (this.statColor === "0"){
+          return {
+            "color": "green",
+          }
+        }else if (this.statColor === "1"){
+            return {
+                "color": "red",
+            }
+        }else if (this.statColor === "2"){
+            return {
+                "color": "yellow",
+            }
+        }
+        else{
+        return {
+            
+            "color": "blue",
+          
+        };
+    }
+        },
+    
   },
   methods: {
     setDateTime() {
+
       this.glow = "";
       this.simpleDate = true;
       this.simpleTime = true;
@@ -49,8 +77,8 @@ export default {
     },
     setServerDate() {
       const date = new Date();
-
-      console.log(-date.getTimezoneOffset() / 60 + "heh"); //get utc time offset
+        console.log(this.statColor+ "huhu please work");
+      
       date.setHours(date.getHours() + -1);
       this.serverDate = date;
     },
@@ -77,8 +105,10 @@ th {
   padding-bottom: 15px;
 }
 
-.stockbg {
-  background-color: #2b2b2b;
+
+table{
+    background-color: #2b2b2b;
+    width: auto;
 }
 .tdstyle {
   color: #fff;

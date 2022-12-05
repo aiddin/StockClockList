@@ -1,11 +1,10 @@
-
 <template>
   <div id="clock">
     <h1 :style="style">{{ advancedDateSet }}</h1>
     <h2 :style="style">
       {{ simpleDateTimeSet }}{{ simpleDateSet }}{{ simpleTimeSet }}{{ advancedTimeSet }}
     </h2>
-  </div   >
+  </div>
 </template>
 
 <script>
@@ -15,10 +14,8 @@ export default defineComponent({
   //props from TcData component
   props: [
     "serverDate",
-
     "glow",
-
-
+    "gmTime",
     "simpleTime",
     "simpleDate",
     "simpleDateTime",
@@ -29,7 +26,7 @@ export default defineComponent({
   data() {
     return {
       timeDiff: this.timeDiffer(),
-      
+
       advancedTimeBool: this.advancedTime,
       advancedDateBool: this.advancedTime,
 
@@ -41,16 +38,14 @@ export default defineComponent({
 
       dateServer: this.serverDate,
     };
-  
   },
-watch :{
-timeDiff(newTimeDiff,oldTimeDiff){
-  if (newTimeDiff !== oldTimeDiff){
-    this.timeDiff = newTimeDiff;
-  
-  }
-}
-},
+  // watch: {
+  //   timeDiff(newTimeDiff, oldTimeDiff) {
+  //     if (newTimeDiff !== oldTimeDiff) {
+  //       this.timeDiff = newTimeDiff;
+  //     }
+  //   },
+  // },
   methods: {
     //setting date time format
     setSimpleDateTime() {
@@ -107,7 +102,7 @@ timeDiff(newTimeDiff,oldTimeDiff){
         return set;
       } else return (set = "");
     },
-   
+
     //setting client time and date
     clientTime() {
       const dateLocal1 = new Date();
@@ -115,13 +110,13 @@ timeDiff(newTimeDiff,oldTimeDiff){
       return dateLocal1;
     },
     //setting time difference
-      timeDiffer() {
-        const dateLocal1 = new Date();
-        const dateServer1 = this.serverDate;
-        const timeDiff = dateLocal1.getTime() - dateServer1.getTime();
-        console.log(timeDiff)
-        return timeDiff;
-      },
+    timeDiffer() {
+      const dateLocal1 = new Date();
+      const dateServer1 = this.serverDate;
+      const timeDiff = dateLocal1.getTime() - dateServer1.getTime();
+      console.log(timeDiff);
+      return timeDiff;
+    },
     //set date time for set interval
     setDateTime() {
       this.simpleDateTimeSet = this.setSimpleDateTime();
@@ -133,30 +128,27 @@ timeDiff(newTimeDiff,oldTimeDiff){
   },
 
   computed: {
-
     //styling for glow fx
     style() {
       if (this.glow == undefined) return "";
       else
         return {
-          "text": "0 0 20px rgb(39, 83, 149), 0 0 20px rgba(10, 175, 230, 0)",
+          text: "0 0 20px rgb(39, 83, 149), 0 0 20px rgba(10, 175, 230, 0)",
           color: this.glow,
         };
-    }
+    },
   },
-    // watch: {
-    // serverDate: function (newVal, oldVal) {
-    //   this.dateServer = newVal;
-    //   this.timeDiff = this.timeDiffer();
-    // },
-    // },
+  // watch: {
+  // serverDate: function (newVal, oldVal) {
+  //   this.dateServer = newVal;
+  //   this.timeDiff = this.timeDiffer();
+  // },
+  // },
 
   mounted() {
     setInterval(() => {
       this.setDateTime();
-     
-    }, 1000);
-   
+    }, 0);
   },
   beforeUnmount() {
     clearInterval(this.setDateTime);
@@ -188,7 +180,7 @@ timeDiff(newTimeDiff,oldTimeDiff){
 }
 #clock h2 {
   transition: 0.2s;
-  font-size: 8vh ;
+  font-size: 8vh;
   margin: 0;
   padding: 0;
 }

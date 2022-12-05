@@ -14,10 +14,10 @@ export default {
   data() {
     return {
       exch: [
-        { id: "MYX", name: "Malaysia Exchange ", status: "0", gmTime: "+8" },
-        { id: "IDX", name: "Indonesia Exchange ", status: "1", gmTime: "+7" },
-        { id: "HKEX", name: "Hong Kong Exchange ", status: "2", gmTime: "+8" },
-        { id: "SGX", name: "Singapore Exchange ", status: "0", gmTime: "+8" }, // 1 hour == 3,600,000 milliseconds
+        { id: "MYX", name: "Malaysia Exchange ", status: "0", GMT: +8 },
+        { id: "IDX", name: "Indonesia Exchange ", status: "2", GMT: +7 },
+        { id: "TSX", name: "Toronto Stock Exchange", status: "1", GMT: -5 },
+        { id: "SGX", name: "Singapore Exchange ", status: "0", GMT: +8 }, // 1 hour == 3,600,000 milliseconds
       ],
     };
   },

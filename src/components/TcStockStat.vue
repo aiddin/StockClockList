@@ -1,5 +1,5 @@
 <template>
-  <div v-bind:stat="status">
+  <div  :style="status" :stat="status">
     {{ status.message }}
   </div>
 </template>
@@ -9,7 +9,12 @@ export default {
   props: ["stat"],
   data() {
     return {
-      message: this.status,
+      status:{
+        message: "default",
+          color: 'white',
+        
+      }
+      
     };
   },
   created() {
@@ -17,17 +22,21 @@ export default {
   },
   methods: {
     test() {
+        console.log(this.stat+"huhu please work");
       if (this.stat == 0) {
         this.status = {
-          message: "open",
+            message:"OPEN",
+        color: "greenyellow",
         };
       } else if (this.stat == 1) {
         this.status = {
-          message: "close",
+          message: "CLOSE",
+            color: 'red',
         };
       } else if (this.stat == 2) {
         this.status = {
-          message: "break",
+          message: "BREAK",
+            color: 'orange',
         };
       }
     },
