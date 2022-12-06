@@ -80,7 +80,7 @@ export default {
         
       
       date1.setSeconds(Math.floor((Math.random()*60)+1));
-      console.log(date1+"lolo");
+     console.log("date change")
       this.serverDate = date1;
     },
   },

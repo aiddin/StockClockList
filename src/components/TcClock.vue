@@ -117,13 +117,13 @@ export default defineComponent({
       const dateLocal1 = new Date();
       const dateServer1 = this.serverDate;
       const timeDiff =  dateLocal1.getTime() - dateServer1.getTime() ;
-      console.log(timeDiff+"worngbish");
+ 
       return timeDiff;
     },
     //set date time for set interval
     setDateTime() {
       this.localDate = this.clientTime();
-      console.log(this.localDate)
+      
       this.simpleDateTimeSet = this.setSimpleDateTime();
       this.simpleDateSet = this.setSimpleDate();
       this.simpleTimeSet = this.setSimpleTime();
@@ -147,6 +147,7 @@ export default defineComponent({
   serverDate: function (newVal) {
     this.dateServer = newVal;
     this.timeDiff = this.timeDiffer();
+    console.log("TimeDiff is " + this.timeDiff );
   },
   },
 beforeMount() {

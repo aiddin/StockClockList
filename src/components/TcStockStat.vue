@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     test() {
-        console.log(this.stat+"huhu please work");
+     
       if (this.stat == 0) {
         this.status = {
             message:"OPEN",
