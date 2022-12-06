@@ -1,87 +1,89 @@
 <template>
-  <window v-if="visible" :initial-width="940" :initial-height="240" :title="'STOCK EXCHANGE TIME'" :resizable=true @close="toggleDialog" :color= black>
-
-  <div >
-    <table v-on:mouseover="active = !active" class="border-slate-400  w-fill">
-      <tbody>
-        <tr class="border-collapse border border-slate-400 " v-for="exch in exch" :key="exch.id">
-          <td :style="styleTest" class="tdstyle">
-            <tc-stock-stat :stat="exch.status" />
-          </td>
-          <td class="tdstyle">
-            {{ exch.id }}
-          </td>
-          <td class="tdstyle">
-            {{ exch.name }}
-          </td>
-          <td>
-            <tc-clock :serverDate="serverDate" :simpleTime="simpleTime"  >
-            </tc-clock>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-  </div>
-</window>
+  <window
+    v-if="visible"
+    :initial-width="940"
+    :initial-height="240"
+    :title="'STOCK EXCHANGE TIME'"
+    :resizable="true"
+    
+    :color="black"
+    class="k-window-titlebar.k-header"
+  >
+    <div>
+      <table v-on:mouseover="active = !active" class="border-slate-400 w-fill">
+        <tbody>
+          <tr
+            class="border-collapse border border-slate-400"
+            v-for="exch in exch"
+            :key="exch.id"
+          >
+            <td :style="styleTest" class="tdstyle">
+              <tc-stock-stat :stat="exch.status" />
+            </td>
+            <td class="tdstyle">
+              {{ exch.id }}
+            </td>
+            <td class="tdstyle">
+              {{ exch.name }}
+            </td>
+            <td>
+              <tc-clock :serverDate="serverDate" :simpleTime="simpleTime"> </tc-clock>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </window>
 </template>
- 
+
 <script>
 import TcClock from "../components/TcClock.vue";
 import TcStockStat from "../components/TcStockStat.vue";
-import {
-      Window
-  } from '@progress/kendo-vue-dialogs';
-  import '@progress/kendo-theme-default/dist/all.css';
+import { Window } from "@progress/kendo-vue-dialogs";
+import "@progress/kendo-theme-default/dist/all.css";
 const date = new Date();
 export default {
   components: {
     TcClock,
     TcStockStat,
-    'window': Window,
+    window: Window,
   },
 
-  props: ["exch",],
+  props: ["exch"],
   data() {
-    
     return {
       active: false,
 
       visible: true,
       serverDate: date,
       simpleTime: true,
-      statColor : this.exch.status,
+      statColor: this.exch.status,
     };
   },
 
   computed: {
-    styleTest(){
-        if (this.statColor === "0"){
-          return {
-            "color": "green",
-          }
-        }else if (this.statColor === "1"){
-            return {
-                "color": "red",
-            }
-        }else if (this.statColor === "2"){
-            return {
-                "color": "yellow",
-            }
-        }
-        else{
+    styleTest() {
+      if (this.statColor === "0") {
         return {
-            
-            "color": "blue",
-          
+          color: "green",
         };
-    }
-        },
-    
+      } else if (this.statColor === "1") {
+        return {
+          color: "red",
+        };
+      } else if (this.statColor === "2") {
+        return {
+          color: "yellow",
+        };
+      } else {
+        return {
+          color: "blue",
+        };
+      }
+    },
   },
   methods: {
     setDateTime() {
-
       this.glow = "";
       this.simpleDate = true;
       this.simpleTime = true;
@@ -89,12 +91,11 @@ export default {
       this.advancedTime = true;
     },
     setServerDate() {
-      
       const date1 = new Date();
-        console.log(date1.getSeconds())
-      
+      console.log(date1.getSeconds());
+
       // date1.setMilliseconds((Math.floor((Math.random()* 4)+2))*1000); test random second diff
-     console.log("date change")
+      console.log("date change");
       this.serverDate = date1;
     },
   },
@@ -110,17 +111,12 @@ export default {
   },
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-
 <style>
 th {
   padding-right: 15px;
   padding-left: 15px;
   padding-bottom: 15px;
 }
-
-
 table{
     background-color: #2b2b2b;
     scroll-snap-type: both mandatory;
