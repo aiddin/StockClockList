@@ -1,8 +1,10 @@
 <template>
+  <window v-if="visible" :initial-width="940" :initial-height="240" :title="'STOCK EXCHANGE TIME'" :resizable=true @close="toggleDialog" :color= black>
+
   <div >
-    <table class="huh">
+    <table v-on:mouseover="active = !active" class="border-slate-400  w-fill">
       <tbody>
-        <tr v-for="exch in exch" :key="exch.id">
+        <tr class="border-collapse border border-slate-400 " v-for="exch in exch" :key="exch.id">
           <td :style="styleTest" class="tdstyle">
             <tc-stock-stat :stat="exch.status" />
           </td>
@@ -19,22 +21,33 @@
         </tr>
       </tbody>
     </table>
-  </div>
-</template>
 
+  </div>
+</window>
+</template>
+ 
 <script>
 import TcClock from "../components/TcClock.vue";
 import TcStockStat from "../components/TcStockStat.vue";
+import {
+      Window
+  } from '@progress/kendo-vue-dialogs';
+  import '@progress/kendo-theme-default/dist/all.css';
 const date = new Date();
 export default {
   components: {
     TcClock,
     TcStockStat,
+    'window': Window,
   },
 
   props: ["exch",],
   data() {
+    
     return {
+      active: false,
+
+      visible: true,
       serverDate: date,
       simpleTime: true,
       statColor : this.exch.status,
@@ -76,10 +89,11 @@ export default {
       this.advancedTime = true;
     },
     setServerDate() {
-      const date1 = new Date();
-        
       
-      date1.setSeconds(Math.floor((Math.random()*60)+1));
+      const date1 = new Date();
+        console.log(date1.getSeconds())
+      
+      // date1.setMilliseconds((Math.floor((Math.random()* 4)+2))*1000); test random second diff
      console.log("date change")
       this.serverDate = date1;
     },
@@ -92,7 +106,7 @@ export default {
     //getUTChour
     setInterval(() => {
       this.setServerDate();
-    }, 5000);
+    }, 1000);
   },
 };
 </script>
@@ -109,11 +123,12 @@ th {
 
 table{
     background-color: #2b2b2b;
+    scroll-snap-type: both mandatory;
     width: auto;
 }
 .tdstyle {
   color: #fff;
-
+  scroll-snap-align: start;
   font-weight: 500;
   margin: 150vw;
   padding: 50px;

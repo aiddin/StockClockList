@@ -2,6 +2,7 @@
 :simpleTime="simpleTime"
 :simpleDateTime="simpleDateTime" -->
 <template>
+  
   <tc-stock-list :exch="exch"></tc-stock-list>
 </template>
 <script>

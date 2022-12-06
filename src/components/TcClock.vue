@@ -8,6 +8,7 @@
 </template>
 
 <script>
+
 import { defineComponent } from "vue";
 //TODO : add a prop to change the time zone 
 //USE TIME DIFFER ADD TO LOCAL TIME PROP
@@ -42,13 +43,7 @@ export default defineComponent({
       dateServer: this.serverDate,
     };
   },
-  // watch: {
-  //   timeDiff(newTimeDiff, oldTimeDiff) {
-  //     if (newTimeDiff !== oldTimeDiff) {
-  //       this.timeDiff = newTimeDiff;
-  //     }
-  //   },
-  // },
+
   methods: {
     //setting date time format
     setSimpleDateTime() {
@@ -70,7 +65,7 @@ export default defineComponent({
           day: "2-digit",
           month: "short",
           year: "numeric",
-        }).format(this.clientTime());
+        }).format(this.localDate);
         return set;
       } else return (set = "");
     },
@@ -91,7 +86,7 @@ export default defineComponent({
           day: "2-digit",
           month: "short",
           weekday: "short",
-        }).format(this.clientTime());
+        }).format(this.localDate);
         return set;
       } else return (set = "");
     },
@@ -101,7 +96,7 @@ export default defineComponent({
           hour: "2-digit",
           minute: "2-digit",
           second: "2-digit",
-        }).format(this.clientTime());
+        }).format(this.localDate);
         return set;
       } else return (set = "");
     },
@@ -114,16 +109,15 @@ export default defineComponent({
     },
     //setting time difference
     timeDiffer() {
-      const dateLocal1 = new Date();
+      const dateLocal12 = new Date();
       const dateServer1 = this.serverDate;
-      const timeDiff =  dateLocal1.getTime() - dateServer1.getTime() ;
- 
+      const timeDiff =   dateServer1.getTime()- dateLocal12.getTime();
+      
       return timeDiff;
     },
     //set date time for set interval
     setDateTime() {
       this.localDate = this.clientTime();
-      
       this.simpleDateTimeSet = this.setSimpleDateTime();
       this.simpleDateSet = this.setSimpleDate();
       this.simpleTimeSet = this.setSimpleTime();
@@ -146,7 +140,10 @@ export default defineComponent({
   watch: {
   serverDate: function (newVal) {
     this.dateServer = newVal;
+    this.timeDiff= null;
+    this.localDate=null;
     this.timeDiff = this.timeDiffer();
+    this.localDate= this.clientTime();
     console.log("TimeDiff is " + this.timeDiff );
   },
   },
@@ -158,7 +155,7 @@ beforeMount() {
     setInterval(() => {
       
       this.setDateTime();
-    }, 1000);
+    }, 0);
   },
   beforeUnmount() {
     clearInterval(this.setDateTime);
