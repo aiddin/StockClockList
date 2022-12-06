@@ -109,7 +109,7 @@ export default defineComponent({
     //setting client time and date
     clientTime() {
       const dateLocal1 = new Date();
-      dateLocal1.setMilliseconds(parseInt(this.timeDiffer()));
+      dateLocal1.setMilliseconds(parseInt(this.timeDiff));
       return dateLocal1;
     },
     //setting time difference
@@ -117,12 +117,13 @@ export default defineComponent({
       const dateLocal1 = new Date();
       const dateServer1 = this.serverDate;
       const timeDiff =  dateLocal1.getTime() - dateServer1.getTime() ;
-      console.log(timeDiff);
+      console.log(timeDiff+"worngbish");
       return timeDiff;
     },
     //set date time for set interval
     setDateTime() {
       this.localDate = this.clientTime();
+      console.log(this.localDate)
       this.simpleDateTimeSet = this.setSimpleDateTime();
       this.simpleDateSet = this.setSimpleDate();
       this.simpleTimeSet = this.setSimpleTime();
@@ -142,25 +143,21 @@ export default defineComponent({
         };
     },
   },
-  // watch: {
-  // serverDate: function (newVal, oldVal) {
-  //   this.dateServer = newVal;
-  //   this.timeDiff = this.timeDiffer();
-  // },
-  // },
+  watch: {
+  serverDate: function (newVal) {
+    this.dateServer = newVal;
+    this.timeDiff = this.timeDiffer();
+  },
+  },
 beforeMount() {
-    
+
       this.timeDiffer(), this.clientTime();
-
-
-      
-    
   },
   mounted() {
     setInterval(() => {
       
       this.setDateTime();
-    }, 0);
+    }, 1000);
   },
   beforeUnmount() {
     clearInterval(this.setDateTime);

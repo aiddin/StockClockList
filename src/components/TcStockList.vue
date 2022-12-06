@@ -13,7 +13,7 @@
             {{ exch.name }}
           </td>
           <td>
-            <tc-clock :serverDate="serverDate" :glow="glow" :simpleTime="simpleTime" :GMT="GMT">
+            <tc-clock :serverDate="serverDate" :simpleTime="simpleTime"  >
             </tc-clock>
           </td>
         </tr>
@@ -76,11 +76,12 @@ export default {
       this.advancedTime = true;
     },
     setServerDate() {
-      const date = new Date();
+      const date1 = new Date();
         
       
-      date.setHours(date.getHours() + -1);
-      this.serverDate = date;
+      date1.setSeconds(Math.floor((Math.random()*60)+1));
+      console.log(date1+"lolo");
+      this.serverDate = date1;
     },
   },
 
@@ -91,7 +92,7 @@ export default {
     //getUTChour
     setInterval(() => {
       this.setServerDate();
-    }, 0);
+    }, 5000);
   },
 };
 </script>
