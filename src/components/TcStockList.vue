@@ -92,10 +92,10 @@ export default {
     },
     setServerDate() {
       const date1 = new Date();
-      console.log(date1.getSeconds());
+      
 
       // date1.setMilliseconds((Math.floor((Math.random()* 4)+2))*1000); test random second diff
-      console.log("date change");
+     
       this.serverDate = date1;
     },
   },

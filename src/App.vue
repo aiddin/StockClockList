@@ -2,15 +2,16 @@
 :simpleTime="simpleTime"
 :simpleDateTime="simpleDateTime" -->
 <template>
-  
-  <tc-stock-list :exch="exch"></tc-stock-list>
+  <tc-stock-exch ></tc-stock-exch>
 </template>
 <script>
-import TcStockList from "./components/TcStockList.vue";
+
+import TcStockExch from "./components/TcStockExch.vue";
 export default {
   name: "App",
   components: {
-    TcStockList,
+    TcStockExch,
+   
   },
   data() {
     return {

@@ -144,7 +144,7 @@ export default defineComponent({
     this.localDate=null;
     this.timeDiff = this.timeDiffer();
     this.localDate= this.clientTime();
-    console.log("TimeDiff is " + this.timeDiff );
+    
   },
   },
 beforeMount() {
