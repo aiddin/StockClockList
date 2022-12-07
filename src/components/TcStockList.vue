@@ -1,14 +1,6 @@
 <template>
-  <window
-    v-if="visible"
-    :initial-width="940"
-    :initial-height="240"
-    :title="'STOCK EXCHANGE TIME'"
-    :resizable="true"
-    
-    :color="black"
-    class="k-window-titlebar.k-header"
-  >
+
+  
     <div>
       <table v-on:mouseover="active = !active" class="border-slate-400 w-fill">
         <tbody>
@@ -33,20 +25,20 @@
         </tbody>
       </table>
     </div>
-  </window>
+
 </template>
 
 <script>
 import TcClock from "../components/TcClock.vue";
 import TcStockStat from "../components/TcStockStat.vue";
-import { Window } from "@progress/kendo-vue-dialogs";
+
 import "@progress/kendo-theme-default/dist/all.css";
 const date = new Date();
 export default {
   components: {
     TcClock,
     TcStockStat,
-    window: Window,
+  
   },
 
   props: ["exch"],

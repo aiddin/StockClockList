@@ -2,7 +2,7 @@
 :simpleTime="simpleTime"
 :simpleDateTime="simpleDateTime" -->
 <template>
-  <tc-stock-exch ></tc-stock-exch>
+  <tc-stock-exch :exchlist="exchlist"></tc-stock-exch>
 </template>
 <script>
 
@@ -15,7 +15,7 @@ export default {
   },
   data() {
     return {
-      exch: [
+      exchlist: [
         { id: "MYX", name: "Malaysia Exchange ", status: "0", GMT: +8 },
         { id: "IDX", name: "Indonesia Exchange ", status: "2", GMT: +7 },
         { id: "TSX", name: "Toronto Stock Exchange", status: "1", GMT: -5 },

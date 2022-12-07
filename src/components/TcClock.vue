@@ -176,7 +176,7 @@ beforeMount() {
   color: greenyellow;
   transition: 0.2s;
   text-align: justify;
-  font-family: "Oxygen", monospace;
+  font-family: monospace;
   background-color: rgba(34, 34, 34, 0);
 }
 #clock h1 {
