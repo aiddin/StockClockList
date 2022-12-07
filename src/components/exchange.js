@@ -1,4 +1,4 @@
-const products = [
+const exchange = [
 
     { id: "MYX", name: "Malaysia Exchange ", status: "0", GMT: +8 },
     { id: "IDX", name: "Indonesia Exchange ", status: "2", GMT: +7 },
@@ -7,5 +7,5 @@ const products = [
     { id: "KRX", name: "Korean Exchange", status: "0", GMT: +8 },
     { id: "TWSE", name: "Taiwan Stock Exchange ", status: "0", GMT: +8 },
     { id: "XAMS", name: "Euronext Amsterdam ", status: "0", GMT: +8 },
-];
-export { products };
+]
+export { exchange };

@@ -2,13 +2,11 @@
 
     <Grid
           ref="grid"
-          
           :style="{height: '520px'}"
-          :data-items="products"
+          :data-items="exchange"
           :selected-field="selectedField"
           :columns="columns"
-         header = hidden;
-          @selectionchange="onSelectionChange"
+           @selectionchange="onSelectionChange"
           @rowclick="onRowClick">
       </Grid>
 
@@ -31,36 +29,36 @@
 
              exch:[],
               selectedField: 'selected',
-              products: this.exchlist,
+              exchange: this.exchlist,
              
               staticColumns: [
-                
-                  { field: 'id',  width: '150px', },
-                  { field: 'name' , },
-                  { field: 'status', },
-                  { field: 'GMT', }
-              ]
+                  { field: 'id', title:'ID', width: '150px' },
+                  { field: 'name', title: 'Exchange Name' },
+                  { field: 'status',  title: 'Status' },
+                  { field: 'GMT', title: 'Greenwich Mediteraenan Time' },
+          ]
           };
       },
-      watch:{
-
-      },
-      mounted() {
-          this.hideDetailGridHeaders();
+      computed: {//this function is used to select all the rows in the grid
+         
+          columns () {
+              return [
+                  { field: 'selected', width: '50px', headerSelectionValue: this.areAllSelected },
+                  ...this.staticColumns
+              ]
+          }
       },
       methods: {
-        hideDetailGridHeaders() {
-      (".k-grid tbody .k-grid .k-grid-header").hide();
-  },
+       
           onHeaderSelectionChange (event) {
               let checked = event.event.target.checked;
-              this.products = this.products.map((item) => { return {...item, selected: checked} });
+              this.exchange = this.exchange.map((item) => { return {...item, selected: checked} });
               if(this.selected ===true){
-                    this.exch.push(this.products)
+                    this.exch.push(this.exchange)
 
               }
               else if(this.selected ===false){
-                  this.exch.splice(this.exch.indexOf(this.products),1)
+                  this.exch.splice(this.exch.indexOf(this.exchange),1)
               }
              
           },
