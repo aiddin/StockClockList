@@ -5,7 +5,6 @@
     :data-items="exchange"
     :selected-field="selectedField"
     :columns="columns"
-   
     @rowclick="onRowClick"
   >
     <tc-stock-stat :stat="exch.status" />
@@ -31,7 +30,7 @@ export default {
       exch: [],
       selectedField: "selected",
       exchange: this.exchlist,
-
+      huh: "",
       staticColumns: [
         { field: "id", title: "ID", width: "150px" },
         { field: "name", title: "Exchange Name" },
@@ -45,12 +44,15 @@ export default {
     },
   },
   methods: {
+    setDateTime() {
+      this.exchange = this.exchlist;
+    },
     onRowClick(event) {
       event.dataItem[this.selectedField] = !event.dataItem[this.selectedField];
       if (event.dataItem[this.selectedField] == false) {
         this.exch.splice(this.exch.indexOf(event.dataItem), 1);
       } else this.exch.push(event.dataItem);
-      console.log(this.exch);
+      console.log(this.huh);
     },
   },
 };

@@ -18,7 +18,7 @@ export default defineComponent({
   props: [
     "serverDate",
     "glow",
-    "gmTime",
+    "GMT",
     "simpleTime",
     "simpleDate",
     "simpleDateTime",
@@ -54,7 +54,7 @@ export default defineComponent({
           month: "short",
           hour: "2-digit",
           minute: "2-digit",
-        }).format(this.clientTime());
+        }).format(this.localDate);
         return set;
       } else return "";
     },
@@ -110,9 +110,10 @@ export default defineComponent({
     //setting time difference
     timeDiffer() {
       const dateLocal12 = new Date();
-      console.log(this.serverDate);
-      const dateServer1 = Date.parse(this.serverDate);
-      const timeDiff =   dateLocal12.getTime()- dateServer1.getTime();
+      
+      const dateServer1= new Date(this.serverDate);
+      // const dateServer1 = new Date.parse(this.serverDate);
+      const timeDiff = dateServer1.getTime()-dateLocal12.getTime();
       
       return timeDiff;
     },

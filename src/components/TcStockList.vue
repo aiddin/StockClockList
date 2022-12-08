@@ -4,29 +4,29 @@
 
 
     <div>
+      <li v-for="exc in exc" :key="exc.id">
+        {{ exc.serverDate }}
+      </li>
       <table  v-on:mouseover="active = !active" class="bg-gray-900 table w-full ">
-        {{exc}}{{exch}}
+        
           <tr
             class="border ..."
-            v-for="exch in exch"
-            :key="exch.id"
-            
+            v-for="exc in exc"
+            :key="exc.id" 
           >
-         
             <td  class="border border-slate-700 ...">
-              <tc-stock-stat :stat="exch.status" />
+              <tc-stock-stat :stat="exc.status" />
             </td>
             <td class="text-white border border-slate-700 ..." >
-              {{ exch.id }}
+              {{ exc.id }}
             </td>
             <td class="text-white border border-slate-700 ...">
-              {{ exch.name }}
+              {{ exc.name }}
             </td>
             <td class="text-white border border-slate-700 ...">
               <tc-clock 
-              v-for="(serverDate,exc) in exc.length"
-              :key="exc.id"
-              :serverDate="exc.map(a => serverDate.serverDate)"
+             
+              :serverDate="exc.serverDate"
               :simpleTime="simpleTime"
                > 
             </tc-clock>
@@ -34,6 +34,7 @@
           </tr>
         
       </table>
+      {{exc}}
     </div>
 
 </template>
@@ -56,9 +57,8 @@ export default {
     return {
       active: false,
       exc: this.exch,
-
-      serverDate: this.exch.serverDate,
-      simpleTime: true,
+     
+      simpleTime: true, 
     };
   },
   computed: {
@@ -67,9 +67,7 @@ export default {
   methods: {
     setDateTime() {
       this.simpleTime = true;
-       
-      this.serverDate = this.exc.serverDate;
-   
+      this.exc=this.exch;
     },
    
   },
@@ -78,7 +76,7 @@ export default {
   // },
   mounted() {
     setInterval(() => {
-      console.log(this.serverDate);
+      
       this.setDateTime();
     }, 1000);
    

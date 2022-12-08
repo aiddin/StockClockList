@@ -13,10 +13,11 @@ export default {
   },
   data() {
     return {
-      
+      serveDate: this.datetrhin(),
+  
       exchlist: [
-        { id: "MYX", name: "Malaysia Exchange ", status: "0", GMT: +8, serverDate: date, },
-        { id: "IDX", name: "Indonesia Exchange ", status: "2", GMT: +7 ,serverDate: date,},
+        { id: "MYX", name: "Malaysia Exchange ", status: "0", GMT: +8, serverDate: this.serveDate, },
+        { id: "IDX", name: "Indonesia Exchange ", status: "2", GMT: +7 ,serverDate: this.datetrhin(),},
         { id: "TSX", name: "Toronto Stock Exchange", status: "1", GMT: -5 ,serverDate: date,},
         { id: "SGX", name: "Singapore Exchange ", status: "0", GMT: +8 ,serverDate: date,},
         { id: "KRX", name: "Korean Exchange", status: "0", GMT: +9 ,serverDate: date, },
@@ -25,5 +26,21 @@ export default {
       ],
     };
   },
+  methods: {
+    datetrhin() {
+      const date1 = new Date();
+      return date1;
+    },
+    
+  },
+
+    mounted() {
+      setInterval(() => {
+        this.datetrhin();
+        
+        
+      }, 1000);
+    },
+  
 };
 </script>
