@@ -110,8 +110,9 @@ export default defineComponent({
     //setting time difference
     timeDiffer() {
       const dateLocal12 = new Date();
-      const dateServer1 = this.serverDate;
-      const timeDiff =   dateServer1.getTime()- dateLocal12.getTime();
+      console.log(this.serverDate);
+      const dateServer1 = Date.parse(this.serverDate);
+      const timeDiff =   dateLocal12.getTime()- dateServer1.getTime();
       
       return timeDiff;
     },
