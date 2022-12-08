@@ -56,5 +56,9 @@ export default {
       console.log(this.huh);
     },
   },
+  mounted() {
+    setInterval(this.setDateTime, 1000);
+  
+  },
 };
 </script>

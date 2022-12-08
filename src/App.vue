@@ -16,7 +16,7 @@ export default {
       serveDate1: date,
       
       exchlist: [
-        { id: "MYX", name: "Malaysia Exchange ", status: "0", GMT: +8, serverDate1: this.serveDate, },
+        { id: "MYX", name: "Malaysia Exchange ", status: "0", GMT: +8, serverDate1: date, },
         { id: "IDX", name: "Indonesia Exchange ", status: "2", GMT: +7 ,serverDate1: date},
         { id: "TSX", name: "Toronto Stock Exchange", status: "1", GMT: -5 ,serverDate1: date,}
         // { id: "SGX", name: "Singapore Exchange ", status: "0", GMT: +8 ,serverDate: date,},
@@ -30,13 +30,14 @@ export default {
   setServerDate() {
       const date1 = new Date();
       date1.setMilliseconds((Math.floor((Math.random()* 4)+2))*1000);
+      this.serveDate1 = date1;
       this.exchlist=[
         {
           id: "MYX",
           name: "Malaysia Exchange ",
           status: "0",
           GMT: +8,
-          serverDate1: this.serveDate,
+          serverDate1: this.date1,
 
         },
         {
@@ -55,7 +56,8 @@ export default {
         }
       ]
       // 
-     console.log(date1)
+      console.log(this.exchlist)
+     console.log(this.serveDate1)
 
     },
   },
