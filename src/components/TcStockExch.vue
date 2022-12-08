@@ -46,6 +46,7 @@ export default {
   methods: {
     setDateTime() {
       this.exchange = this.exchlist;
+      this.exch;
     },
     onRowClick(event) {
       event.dataItem[this.selectedField] = !event.dataItem[this.selectedField];

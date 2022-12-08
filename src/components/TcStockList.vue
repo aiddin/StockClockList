@@ -26,7 +26,7 @@
             <td class="text-white border border-slate-700 ...">
               <tc-clock 
              
-              :serverDate="exc.serverDate"
+              :serverDate="exc.serverDate1"
               :simpleTime="simpleTime"
                > 
             </tc-clock>
