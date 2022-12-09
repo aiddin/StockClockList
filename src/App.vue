@@ -1,6 +1,6 @@
 
 <template>
-  <tc-stock-exch  v-bind:exchlist="exchlist"></tc-stock-exch>
+  <tc-stock-exch :exchlist="exchlist"></tc-stock-exch>
 </template>
 <script>
       const date = new Date();

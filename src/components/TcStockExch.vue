@@ -2,20 +2,22 @@
   <Grid
     ref="grid"
 
-    :style="{ height: '300px' }"
+    :style="{ height: '150px' }"
     :data-items="exchange"
     :selected-field="selectedField"
+    :persistSelection="true"
     :columns="columns"
     @rowclick="onRowClick"
   ></Grid>
-
-  <tc-stock-list :exch="exch"></tc-stock-list>
+  {{ exch }}
+  <tc-stock-list :exch="exch" ></tc-stock-list>
 </template>
 
 <script>
 import { Grid } from "@progress/kendo-vue-grid";
 import "@progress/kendo-theme-default/dist/all.css";
 import TcStockList from "./TcStockList.vue";
+// import {reactive,ref} from "vue";
 export default {
   components: {
     TcStockList,
@@ -32,7 +34,7 @@ export default {
         { field: "id", title: "ID", width: "150px" },
         { field: "name", title: "Exchange Name" },
         { field: "status", title: "Status" },
-        { field: "serverDate1", title: "Server Date" },
+        
       ],
     };
   },
@@ -49,7 +51,17 @@ export default {
    
    
   },
- 
+  watch: {
+    
+      exchlist: {
+         handler () {
+             this.exch=this.exchlist;
+             
+         },
+         
+       } 
+     },
+    
   methods: {
    
     onRowClick(event) {
@@ -60,13 +72,7 @@ export default {
       
     },
   },
-  mounted() {
-    setInterval(() => {
-      this.exchange = this.exchlist;
-    }, 0);
-  
-
-  },
+ 
  
  
 };

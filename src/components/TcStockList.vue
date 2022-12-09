@@ -5,7 +5,7 @@
 
     <div>
 
-      <table  v-on:mouseover="active = !active" class="bg-gray-900 table w-full ">
+      <table class="bg-gray-900 table w-full ">
         
           <tr
             class="border ..."
@@ -26,6 +26,7 @@
              
               :serverDate="exc.serverDate1"
               :simpleTime="simpleTime"
+              :glow="glow"
                > 
             </tc-clock>
             </td>
@@ -55,7 +56,7 @@ export default {
     return {
       active: true,
       exc: this.exch,
-     
+      glow: 'red',
       simpleTime: true, 
     };
   },

@@ -134,7 +134,7 @@ export default defineComponent({
       if (this.glow == undefined) return "";
       else
         return {
-          text: "0 0 20px rgb(39, 83, 149), 0 0 20px rgba(10, 175, 230, 0)",
+          "text-shadow": "0 0 20px rgb(39, 83, 149), 0 0 20px rgba(10, 175, 230, 0)",
           color: this.glow,
         };
     },
