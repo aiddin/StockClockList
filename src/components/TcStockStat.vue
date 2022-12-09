@@ -10,7 +10,7 @@ export default {
   data() {
     return {
       status:{
-        message: "default",
+        message: "not found",
           color: 'white',
         
       }

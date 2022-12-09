@@ -4,9 +4,7 @@
 
 
     <div>
-      <li v-for="exc in exc" :key="exc.id">
-        {{ exc.serverDate }}
-      </li>
+
       <table  v-on:mouseover="active = !active" class="bg-gray-900 table w-full ">
         
           <tr
@@ -55,7 +53,7 @@ export default {
   props: ["exch"],
   data() {
     return {
-      active: false,
+      active: true,
       exc: this.exch,
      
       simpleTime: true, 
@@ -75,10 +73,11 @@ export default {
   //   this.setServerDate();
   // },
   mounted() {
+ 
     setInterval(() => {
       
       this.setDateTime();
-    }, 1000);
+    }, 0);
    
   },
 };

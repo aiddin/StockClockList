@@ -1,14 +1,13 @@
 <template>
   <Grid
     ref="grid"
+
     :style="{ height: '300px' }"
     :data-items="exchange"
     :selected-field="selectedField"
     :columns="columns"
     @rowclick="onRowClick"
-  >
-    <tc-stock-stat :stat="exch.status" />
-  </Grid>
+  ></Grid>
 
   <tc-stock-list :exch="exch"></tc-stock-list>
 </template>
@@ -17,11 +16,10 @@
 import { Grid } from "@progress/kendo-vue-grid";
 import "@progress/kendo-theme-default/dist/all.css";
 import TcStockList from "./TcStockList.vue";
-import TcStockStat from "./TcStockStat.vue";
 export default {
   components: {
     TcStockList,
-    TcStockStat,
+    
     Grid: Grid,
   },
   props: ["exchlist"],
@@ -30,35 +28,46 @@ export default {
       exch: [],
       selectedField: "selected",
       exchange: this.exchlist,
-      huh: "",
       staticColumns: [
         { field: "id", title: "ID", width: "150px" },
         { field: "name", title: "Exchange Name" },
         { field: "status", title: "Status" },
+        { field: "serverDate1", title: "Server Date" },
       ],
     };
   },
+  //  watch: {
+  // serverDate1: function () {
+  //   this.exchange = this.exchlist;
+
+  // },
+  // },
   computed: {
     columns() {
       return [...this.staticColumns];
     },
+   
+   
   },
+ 
   methods: {
-    setDateTime() {
-      this.exchange = this.exchlist;
-      this.exch;
-    },
+   
     onRowClick(event) {
       event.dataItem[this.selectedField] = !event.dataItem[this.selectedField];
       if (event.dataItem[this.selectedField] == false) {
         this.exch.splice(this.exch.indexOf(event.dataItem), 1);
       } else this.exch.push(event.dataItem);
-      console.log(this.huh);
+      
     },
   },
   mounted() {
-    setInterval(this.setDateTime, 1000);
+    setInterval(() => {
+      this.exchange = this.exchlist;
+    }, 0);
   
+
   },
+ 
+ 
 };
 </script>

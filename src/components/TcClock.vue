@@ -108,12 +108,12 @@ export default defineComponent({
       return dateLocal1;
     },
     //setting time difference
-    timeDiffer() {
+    timeDiffer() {                                             
       const dateLocal12 = new Date();
       
       const dateServer1= new Date(Date.parse(this.serverDate));
       // const dateServer1 = new Date.parse(this.serverDate);
-      const timeDiff = dateServer1.getTime()-dateLocal12.getTime();
+      const timeDiff = dateServer1.getTime()- dateLocal12.getTime();
       
       return timeDiff;
     },
@@ -155,7 +155,7 @@ beforeMount() {
   },
   mounted() {
     setInterval(() => {
-      
+
       this.setDateTime();
     }, 0);
   },

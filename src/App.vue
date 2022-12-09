@@ -30,14 +30,14 @@ export default {
   setServerDate() {
       const date1 = new Date();
       date1.setMilliseconds((Math.floor((Math.random()* 4)+2))*1000);
-      this.serveDate1 = date1;
+      this.serverDate1 = date1;
       this.exchlist=[
         {
           id: "MYX",
           name: "Malaysia Exchange ",
           status: "0",
           GMT: +8,
-          serverDate1: this.date1,
+          serverDate1: date1,
 
         },
         {
@@ -56,8 +56,8 @@ export default {
         }
       ]
       // 
-      console.log(this.exchlist)
-     console.log(this.serveDate1)
+      
+     
 
     },
   },
