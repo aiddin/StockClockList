@@ -9,16 +9,13 @@
     :columns="columns"
     @rowclick="onRowClick"
   ></Grid>
- 
-
 </div>
-
   <div>
     <table class="bg-gray-900 table w-full ">
         <tr
           class="border ..."
           v-for="exch in exch"
-          :key="exch.id" 
+          :key="exch.id"
         >
           <td  class="border border-slate-700 ...">
             <tc-stock-stat :stat="exch.status" />
@@ -43,6 +40,9 @@
     </table>
 
   </div>
+  {{exchange}}
+  <!-- {{exchlist}}
+  {{exchange}} -->
 </template>
 
 <script>
@@ -64,14 +64,13 @@ export default {
   props: ["exchlist"],
   data() {
     return {
-      active: true,
-      exc: this.exch,
-      // exc: this.exchange,
-      huh:[],
+
+      // exc: this.exchange
       glow: 'white  ',
       simpleTime: true, 
-
+      exc:this.exchlist,
       exch: [],
+      huh: {},
       selectedField: "selected",
       exchange: this.exchlist,
       staticColumns: [
@@ -82,57 +81,60 @@ export default {
       ],
     };
   },
-  //  watch: {
-  // serverDate1: function () {
-  //   this.exchange = this.exchlist;
+   watch: {
+  exchlist:{
+    handler(){
+      this.refreshArraydata();
+    },
+    deep: true
+  },
+  },
 
-  // },
-  // },
   computed: {
     columns() {
-      
       return [...this.staticColumns];
-      
     },
-   
-   
+    matchingIds() {
+      return this.exch.filter(obj1 =>
+        this.exchange.some(obj2 => obj1.id === obj2.id)
+      );
+    },
+    newObject() {
+      var obj = {};
+      obj = Object.assign({}, ...this.matchingIds());
+      return  obj;
+    }
   },
-   
-
-  watch: {
-    test() {
-    // const obj;
-    for (let key in this.exc) {
-  if (this.exchlist.Object.prototype.hasOwnProperty.call(key)) {
-    // If the property is not present in object2, delete it from object1
-    this.huh.push(this.exc.dataItem)
-}
-}
-
-  },
-      exchlist: {
-         handler () {
-          
-             this.exch
-             
-         },
-         
-       } 
-     },
-    
+//     watch: {
+// //     test() {
+// //     // const obj;
+// //     for (let key in this.exc) {
+// //   if (this.exchlist.Object.prototype.hasOwnProperty.call(key)) {
+// //     // If the property is not present in object2, delete it from object1
+// //     this.huh.push(this.exc.dataItem)
+// // }
+// // }
+// //   },
+//      },
   methods: {
+     refreshArraydata(){
+      this.exchange= []
+      this.exchange = this.exchlist;
+     },
     setDateTime() {
       this.simpleTime = true;
-      this.exc=this.exch;
-     
     },
 
     onRowClick(event) {
       event.dataItem[this.selectedField] = !event.dataItem[this.selectedField];
       if (event.dataItem[this.selectedField] == false) {
         this.exch.splice(this.exch.indexOf(event.dataItem), 1);
-      } else this.exch.push(event.dataItem);
+      } else 
+      {
+        this.exch.push(event.dataItem);
+        
       
+      }
     },
   },
   mounted() {

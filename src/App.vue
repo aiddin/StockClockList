@@ -9,12 +9,9 @@ export default {
   name: "App",
   components: {
     TcStockExch,
-   
   },
   data() {
     return {
-      serveDate1: date,
-      
       exchlist: [
         { id: "MYX", name: "Malaysia Exchange ", status: "0", GMT: +8, serverDate1: date, },
         { id: "IDX", name: "Indonesia Exchange ", status: "2", GMT: +7 ,serverDate1: date},
@@ -29,7 +26,7 @@ export default {
   methods: {
   setServerDate() {
       const date1 = new Date();
-      date1.setMilliseconds((Math.floor((Math.random()* 4)+2))*1000);
+      date1.setMilliseconds((Math.floor((Math.random()* 8)+2))*1000);
       this.serverDate1 = date1;
       this.exchlist=[
         {
@@ -55,10 +52,6 @@ export default {
           serverDate1: date1,
         }
       ]
-      // 
-      
-     
-
     },
   },
     mounted() {
@@ -66,7 +59,7 @@ export default {
         this.setServerDate();
         
         
-      }, 1000);
+      }, 2000);
     },
   
 };
