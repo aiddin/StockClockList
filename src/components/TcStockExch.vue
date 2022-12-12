@@ -1,6 +1,6 @@
 <template>
   <div>
-  <Grid
+  <grid
     ref="grid"
 
     :style="{ height: '150px' }"
@@ -8,7 +8,7 @@
     :selected-field="selectedField"
     :columns="columns"
     @rowclick="onRowClick"
-  ></Grid>
+  ></grid>
 </div>
   <div>
     <table class="bg-gray-900 table w-full ">
@@ -77,7 +77,6 @@ export default {
         { field: "id", title: "ID", width: "150px" },
         { field: "name", title: "Exchange Name" },
         { field: "status", title: "Status" },
-        
       ],
     };
   },
