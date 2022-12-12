@@ -1,32 +1,76 @@
 <template>
+  <div>
   <Grid
     ref="grid"
 
     :style="{ height: '150px' }"
     :data-items="exchange"
     :selected-field="selectedField"
-    :persistSelection="true"
     :columns="columns"
     @rowclick="onRowClick"
   ></Grid>
-  {{ exch }}
-  <tc-stock-list :exch="exch" ></tc-stock-list>
+ 
+
+</div>
+
+  <div>
+    <table class="bg-gray-900 table w-full ">
+        <tr
+          class="border ..."
+          v-for="exch in exch"
+          :key="exch.id" 
+        >
+          <td  class="border border-slate-700 ...">
+            <tc-stock-stat :stat="exch.status" />
+          </td>
+          <td class="text-white border border-slate-700 ..." >
+            {{ exch.id }}
+          </td>
+          <td class="text-white border border-slate-700 ...">
+            {{ exch.name }}
+          </td>
+          <td class="text-white border border-slate-700 ...">
+            <tc-clock 
+           
+            :serverDate="exch.serverDate1"
+            :simpleTime="simpleTime"
+            :glow="glow"
+             > 
+          </tc-clock>
+          </td>
+        </tr>
+      
+    </table>
+
+  </div>
 </template>
 
 <script>
+import TcClock from "../components/TcClock.vue";
+import TcStockStat from "../components/TcStockStat.vue";
 import { Grid } from "@progress/kendo-vue-grid";
 import "@progress/kendo-theme-default/dist/all.css";
-import TcStockList from "./TcStockList.vue";
-// import {reactive,ref} from "vue";
+
+
 export default {
   components: {
-    TcStockList,
-    
+   
+    TcClock,
+    TcStockStat,
     Grid: Grid,
   },
+
+
   props: ["exchlist"],
   data() {
     return {
+      active: true,
+      exc: this.exch,
+      // exc: this.exchange,
+      huh:[],
+      glow: 'white  ',
+      simpleTime: true, 
+
       exch: [],
       selectedField: "selected",
       exchange: this.exchlist,
@@ -46,16 +90,30 @@ export default {
   // },
   computed: {
     columns() {
+      
       return [...this.staticColumns];
+      
     },
    
    
   },
+   
+
   watch: {
-    
+    test() {
+    // const obj;
+    for (let key in this.exc) {
+  if (this.exchlist.Object.prototype.hasOwnProperty.call(key)) {
+    // If the property is not present in object2, delete it from object1
+    this.huh.push(this.exc.dataItem)
+}
+}
+
+  },
       exchlist: {
          handler () {
-             this.exch=this.exchlist;
+          
+             this.exch
              
          },
          
@@ -63,7 +121,12 @@ export default {
      },
     
   methods: {
-   
+    setDateTime() {
+      this.simpleTime = true;
+      this.exc=this.exch;
+     
+    },
+
     onRowClick(event) {
       event.dataItem[this.selectedField] = !event.dataItem[this.selectedField];
       if (event.dataItem[this.selectedField] == false) {
@@ -72,6 +135,14 @@ export default {
       
     },
   },
+  mounted() {
+ 
+ setInterval(() => {
+   
+   this.setDateTime();
+ }, 1000);
+
+},
  
  
  

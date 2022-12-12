@@ -9,22 +9,22 @@
         
           <tr
             class="border ..."
-            v-for="exc in exc"
-            :key="exc.id" 
+            v-for="huh in huh"
+            :key="huh.id" 
           >
             <td  class="border border-slate-700 ...">
-              <tc-stock-stat :stat="exc.status" />
+              <tc-stock-stat :stat="huh.status" />
             </td>
             <td class="text-white border border-slate-700 ..." >
-              {{ exc.id }}
+              {{ huh.id }}
             </td>
             <td class="text-white border border-slate-700 ...">
-              {{ exc.name }}
+              {{ huh.name }}
             </td>
             <td class="text-white border border-slate-700 ...">
               <tc-clock 
              
-              :serverDate="exc.serverDate1"
+              :serverDate="huh.serverDate1"
               :simpleTime="simpleTime"
               :glow="glow"
                > 
@@ -33,7 +33,7 @@
           </tr>
         
       </table>
-      {{exc}}
+      {{huh}}
     </div>
 
 </template>
@@ -51,22 +51,36 @@ export default {
   
   },
 
-  props: ["exch"],
+  props: ["exch","exchange"],
   data() {
     return {
       active: true,
       exc: this.exch,
-      glow: 'red',
+      // exc: this.exchange,
+      huh:[],
+      exchlist: this.exchange,
+      glow: 'white  ',
       simpleTime: true, 
     };
   },
-  computed: {
-   
+  watch: {
+   test() {
+    // const obj;
+    for (let key in this.exc) {
+  if (this.exchlist.Object.prototype.hasOwnProperty.call(key)) {
+    // If the property is not present in object2, delete it from object1
+    this.huh.push(this.exc.dataItem)
+}
+}
+
   },
+},
+
   methods: {
     setDateTime() {
       this.simpleTime = true;
       this.exc=this.exch;
+     
     },
    
   },
@@ -78,7 +92,7 @@ export default {
     setInterval(() => {
       
       this.setDateTime();
-    }, 0);
+    }, 1000);
    
   },
 };
