@@ -8,17 +8,12 @@
 </template>
 
 <script>
-
 import { defineComponent } from "vue";
-//TODO : add a prop to change the time zone 
-//USE TIME DIFFER ADD TO LOCAL TIME PROP
-//DETACH SERVER DATE & TIME FROM LOCAL DATE & TIME
 export default defineComponent({
-  //props from TcData component
   props: [
     "serverDate",
     "glow",
-    "GMT",
+    "color",
     "simpleTime",
     "simpleDate",
     "simpleDateTime",
@@ -33,7 +28,6 @@ export default defineComponent({
 
       advancedTimeBool: this.advancedTime,
       advancedDateBool: this.advancedTime,
-
       simpleTimeSet: this.setSimpleTime(),
       simpleDateSet: this.setSimpleDate(),
       simpleDateTimeSet: this.setSimpleDateTime(),
@@ -108,13 +102,10 @@ export default defineComponent({
       return dateLocal1;
     },
     //setting time difference
-    timeDiffer() {                                             
+    timeDiffer() {
       const dateLocal12 = new Date();
-      
-      const dateServer1= new Date(Date.parse(this.serverDate));
-      // const dateServer1 = new Date.parse(this.serverDate);
-      const timeDiff = dateServer1.getTime()- dateLocal12.getTime();
-      
+      const dateServer1 = new Date(Date.parse(this.serverDate));
+      const timeDiff = dateServer1.getTime() - dateLocal12.getTime();
       return timeDiff;
     },
     //set date time for set interval
@@ -131,7 +122,7 @@ export default defineComponent({
   computed: {
     //styling for glow fx
     style() {
-      if (this.glow == undefined) return "";
+      if (this.glow == !undefined) return "";
       else
         return {
           "text-shadow": "0 0 20px rgb(39, 83, 149), 0 0 20px rgba(10, 175, 230, 0)",
@@ -140,22 +131,19 @@ export default defineComponent({
     },
   },
   watch: {
-  serverDate: function (newVal) {
-    this.dateServer = newVal;
-    this.timeDiff= null;
-    this.localDate=null;
-    this.timeDiff = this.timeDiffer();
-    this.localDate= this.clientTime();
-    
+    serverDate: function (newVal) {
+      this.dateServer = newVal;
+      this.timeDiff = null;
+      this.localDate = null;
+      this.timeDiff = this.timeDiffer();
+      this.localDate = this.clientTime();
+    },
   },
-  },
-beforeMount() {
-
-      this.timeDiffer(), this.clientTime();
+  beforeMount() {
+    this.timeDiffer(), this.clientTime();
   },
   mounted() {
     setInterval(() => {
-
       this.setDateTime();
     }, 0);
   },
