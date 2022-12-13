@@ -3,33 +3,33 @@
     <grid
       ref="grid"
       :style="{ height: '150px' }"
-      :data-items="exchange"
+      :data-items="exchlist"
       :selected-field="selectedField"
       :columns="columns"
+      :resizable="true"
       @rowclick="onRowClick"
     ></grid>
   </div>
   <div>
-    <table class="bg-gray-900 table w-full" v-for="exchlist in exchlist" :key="exchlist.id">
-      <tr class="border ..." v-if="filter(exchlist)" >
-        <td class="border border-slate-700 ...">
-          <tc-stock-stat :stat="exchlist.status" />
-        </td>
-        <td class="text-white border border-slate-700 ...">
+    <table class="table-fixed bg-gray-900 table w-full" v-for="exchlist in exchlist" :key="exchlist.id">
+      <tr  v-if="filter(exchlist)" >
+       
+        <td class="text-white auto" >
           {{ exchlist.id }}
         </td>
-        <td class="text-white border border-slate-700 ...">
-          {{ exchlist.name }}
+        <td>
+          <h1 class="" > <tc-stock-stat :stat="exchlist.status" /></h1>
         </td>
-        <td class="text-white border border-slate-700 ...">
+     
+        <td >
           <tc-clock :serverDate="exchlist.serverDate" :simpleTime="simpleTime" :glow="glow">
           </tc-clock>
         </td>
       </tr>
     </table>
   </div>
-  {{exchlist}}
-  {{exch}}
+  
+ 
 </template>
 <script>
 import TcClock from "../components/TcClock.vue";
@@ -47,16 +47,18 @@ export default {
   props: ["exchlist"],
   data() {
     return {
-      glow: "white",
+      glow: "yellow",
       simpleTime: true,
+      selectedID: 1,
       exc: this.exchlist,
       exch: [],
-
       selectedField: "selected",
       exchange: this.exchlist,
       staticColumns: [
         { field: "id", title: "ID", width: "150px" },
         { field: "name", title: "Exchange Name" },
+        { field: "status", title: "Exchange Status" },
+        { field: "serverDate", title: "Exchange Time" },
       ],
     };
   },
@@ -65,20 +67,14 @@ export default {
       return [...this.staticColumns];
     },
   },
-
   methods: {
-
     filter(exchlist) {
-     
         return this.exch.find(id => id === exchlist.id);
     },
     onRowClick(event) {
       event.dataItem[this.selectedField] = !event.dataItem[this.selectedField];
-      if (event.dataItem[this.selectedField] == false) {
-        this.exch.splice(this.exch.indexOf(event.dataItem.id), 1);
-      } else {
-        this.exch.push(event.dataItem.id);
-      }
+      this.exch =[];
+      this.exch.push(event.dataItem.id);
     },
   },
   

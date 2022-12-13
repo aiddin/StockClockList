@@ -171,7 +171,7 @@ export default defineComponent({
 }
 #clock h1 {
   transition: 0.2s;
-  font-size: 5vh;
+  font-size: 5vw;
   margin: 0;
   padding: 0;
 }
