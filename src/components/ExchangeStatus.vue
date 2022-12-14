@@ -8,7 +8,7 @@
           <th><h1>status</h1></th>
           <th><h1>time</h1></th>
         </tr>
-        <tr class="trhover" v-for="exchlist in exchlist" :key="exchlist.id"  @click="test">
+        <tr class="trhover" v-for="exchlist in exchlist" :key="exchlist.id"  @click="test(exchlist, $event)">
           <td class="text-white auto bg-gray-900 " >
             <h1 class="id">{{ exchlist.id }}</h1> 
           </td>
@@ -88,9 +88,10 @@ export default {
       this.exch = [];
       this.exch.push(event.dataItem.id);
     },
-    test(data) {
+    test(exchlist, event) {
       this.exch = [];
-      this.exch.push(data.item.id);
+      this.exch.push(event.exchlist);
+      console.log(exchlist)
     },
     toggleDialog() {
       this.visible = !this.visible;
