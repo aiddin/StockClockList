@@ -1,17 +1,22 @@
 <template>
   <div>
     <window v-if="visible" :initial-width="600" :initial-height="200" :title="'Stock Exchange Time'" :resizable=true @close="toggleDialog" :color=blue>
-     <div>
-      <table class="table-auto bg-gray-900 table " v-for="exchlist in exchlist" :key="exchlist.id">
-        <tr >
-          <td class="text-white auto bg-gray-900 table" >
-            <h1 class="huh">{{ exchlist.id }}</h1> 
+     <div >
+      <table class="table-auto bg-gray-900 table " >
+        <tr>
+          <th><h1>id</h1></th>
+          <th><h1>status</h1></th>
+          <th><h1>time</h1></th>
+        </tr>
+        <tr class="trhover" v-for="exchlist in exchlist" :key="exchlist.id"  @click="test">
+          <td class="text-white auto bg-gray-900 " >
+            <h1 class="id">{{ exchlist.id }}</h1> 
           </td>
-          <td  bg-gray-900 table>
-            <h1 class="huh">{{exchlist.status}}</h1>
+          <td  class="text-white auto bg-gray-900 ">
+            <h1 class="status"><status-view :stat="exchlist.status"/></h1>
           </td>
-          <td >
-           {{exchlist.serverDate}}
+          <td class="text-white auto bg-gray-900 ">
+          <h1 class="">{{exchlist.serverDate}}</h1> 
           </td>
         </tr>
       </table>
@@ -30,16 +35,19 @@
       <tc-stock-exch :exch="exch" :exchlist="exchlist" />
     </div>
   </div>
+  {{exch}}
 </template>
 <script>
 import {Grid} from "@progress/kendo-vue-grid";
 import {Window} from "@progress/kendo-vue-dialogs";
 import TcStockExch from "./TcStockExch.vue";
+import StatusView from "./StatusView.vue";
 import "@progress/kendo-theme-default/dist/all.css";
 export default {
   components: {
     Grid: Grid,
     TcStockExch,
+    StatusView,
     'window': Window,
   },
   props: ["exchlist"],
@@ -76,9 +84,13 @@ export default {
   // },
   methods: {
     onRowClick(event) {
-      event.dataItem[this.selectedField] = !event.dataItem[this.selectedField];
+      
       this.exch = [];
       this.exch.push(event.dataItem.id);
+    },
+    test(data) {
+      this.exch = [];
+      this.exch.push(data.item.id);
     },
     toggleDialog() {
       this.visible = !this.visible;
@@ -86,3 +98,18 @@ export default {
   },
 };
 </script>
+<style >
+.huh{
+  transition: 0.2s;
+  font-size: 10vh ;
+  font-family: monospace;
+  margin: 1px;
+  padding: 0px;
+}
+.trhover{
+  cursor: pointer;
+  background-color: #ffff99;
+}
+
+</style>
+

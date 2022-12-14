@@ -150,7 +150,7 @@ export default defineComponent({
   },
 });
 </script>
-<style>
+<style scoped >
 #clock {
   height: stretch;
   width: stretch;
@@ -168,15 +168,13 @@ export default defineComponent({
   background-color: rgba(34, 34, 34, 0);
 }
 #clock h1 {
-  transition: 0.2s;
-  font-size: 5vw;
-  margin: 0;
-  padding: 0;
+  font-size: 5vh;
+  margin: 0px;
+  padding: 0px;
 }
 #clock h2 {
-  transition: 0.2s;
-  font-size: 8vh;
-  margin: 0;
-  padding: 0;
+  font-size: 10vh;
+  margin: 0px;
+  padding: 0px;
 }
 </style>

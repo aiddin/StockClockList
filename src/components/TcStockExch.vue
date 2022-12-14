@@ -1,16 +1,17 @@
 <template>
   <div>
-    <table class="table-auto bg-gray-900 table " v-for="exchlist in exchlist" :key="exchlist.id">
+    <table class="table-fixed bg-gray-900 table " v-for="exchlist in exchlist" :key="exchlist.id">
+      
       <tr  v-if="filter(exchlist)" >
-        <td class="text-white auto" >
+        <th   class="text-white auto" >
           <h1 class="huh">{{ exchlist.id }}</h1> 
-        </td>
+        </th>
         <td>
-          <h1 class="huh"><status-view :stat="exchlist.status" /></h1>
+          <h1 class="huh"> <status-view :stat="exchlist.status" /></h1>
         </td>
         <td >
-         <tc-clock :serverDate="exchlist.serverDate" :simpleTime="simpleTime" :glow="glow">
-          </tc-clock>
+          <h1 class="huh" ><tc-clock :serverDate="exchlist.serverDate" :simpleTime="simpleTime" :glow="glow">
+          </tc-clock></h1>
         </td>
       </tr>
     </table>
@@ -53,11 +54,15 @@ export default {
   }, 
 };
 </script>
-<style>
+<style scoped>
 .huh{
   transition: 0.2s;
-  font-size: 6vh;
-  margin: 5;
-  padding: 5;
+  font-size: 10vh ;
+  font-family: monospace;
+  margin: 1px;
+  padding: 0px;
+}
+tr{
+  cursor: pointer;
 }
 </style>
