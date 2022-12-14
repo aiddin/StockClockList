@@ -6,7 +6,6 @@
     </h2>
   </div>
 </template>
-
 <script>
 import { defineComponent } from "vue";
 export default defineComponent({
@@ -94,7 +93,6 @@ export default defineComponent({
         return set;
       } else return (set = "");
     },
-
     //setting client time and date
     clientTime() {
       const dateLocal1 = new Date();

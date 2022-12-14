@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <window v-if="visible" :initial-width="600" :initial-height="200" :title="'Stock Exchange Time'" :resizable=true @close="toggleDialog" :color=blue>
       <grid
         ref="grid"
         :style="{ height: '150px' }"
@@ -10,21 +10,27 @@
         :resizable="true"
         @rowclick="onRowClick"
       ></grid>
+    </window>
+    <div @click="toggleDialog">
+      <tc-stock-exch :exch="exch" :exchlist="exchlist" />
     </div>
   </div>
 </template>
-
 <script>
-import { Grid } from "@progress/kendo-vue-grid";
-
+import {Grid} from "@progress/kendo-vue-grid";
+import {Window} from "@progress/kendo-vue-dialogs";
+import TcStockExch from "./TcStockExch.vue";
 import "@progress/kendo-theme-default/dist/all.css";
 export default {
   components: {
     Grid: Grid,
+    TcStockExch,
+    'window': Window,
   },
   props: ["exchlist"],
   data() {
     return {
+      visible: false,
       glow: "white",
       simpleTime: true,
       selectedID: 1,
@@ -33,10 +39,10 @@ export default {
       selectedField: "selected",
       exchange: this.exchlist,
       staticColumns: [
-        { field: "id", title: "ID", width: "150px" },
-        { field: "name", title: "Exchange Name" },
-        { field: "status", title: "Exchange Status" },
-        { field: "serverDate", title: "Exchange Time" },
+        { field: "id", title: "ID", width: "60px" },
+        { field: "name", title: "Exchange Name", width: "150px" },
+        { field: "status", title: "Status", width: "70px" },
+        { field: "serverDate", title: "Time", width: "250px" },
       ],
     };
   },
@@ -45,13 +51,23 @@ export default {
       return [...this.staticColumns];
     },
   },
+  // watch: {
+  //   exch: {
+  //     handler() {
+  //       this.exchange = this.exchlist;
+  //     },
+  //     deep: true,
+  //   },
+  // },
   methods: {
     onRowClick(event) {
       event.dataItem[this.selectedField] = !event.dataItem[this.selectedField];
       this.exch = [];
       this.exch.push(event.dataItem.id);
     },
+    toggleDialog() {
+      this.visible = !this.visible;
+    },
   },
 };
 </script>
-<style></style>
