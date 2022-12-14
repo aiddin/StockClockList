@@ -1,6 +1,21 @@
 <template>
   <div>
     <window v-if="visible" :initial-width="600" :initial-height="200" :title="'Stock Exchange Time'" :resizable=true @close="toggleDialog" :color=blue>
+     <div>
+      <table class="table-auto bg-gray-900 table " v-for="exchlist in exchlist" :key="exchlist.id">
+        <tr >
+          <td class="text-white auto bg-gray-900 table" >
+            <h1 class="huh">{{ exchlist.id }}</h1> 
+          </td>
+          <td  bg-gray-900 table>
+            <h1 class="huh">{{exchlist.status}}</h1>
+          </td>
+          <td >
+           {{exchlist.serverDate}}
+          </td>
+        </tr>
+      </table>
+    </div>
       <grid
         ref="grid"
         :style="{ height: '150px' }"
