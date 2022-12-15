@@ -120,7 +120,7 @@ export default defineComponent({
   computed: {
     //styling for glow fx
     style() {
-      if (this.glow == !undefined) return "";
+      if (this.glow == undefined) return "";
       else
         return {
           "text-shadow": "0 0 20px rgb(39, 83, 149), 0 0 20px rgba(10, 175, 230, 0)",

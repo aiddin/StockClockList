@@ -72,20 +72,15 @@ export default {
     columns() {
       return [...this.staticColumns];
     },
-   
-  
-    
   },
   methods: {
     onRowClick(event) {
       this.exch = [];
       this.exch.push(event.dataItem.id);
     },
-    
     toggleDialog() {
       this.visible = !this.visible;
     },
-
   },
 };
 </script>
