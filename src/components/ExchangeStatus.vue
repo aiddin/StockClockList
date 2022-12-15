@@ -23,7 +23,7 @@
         
       ></grid>
     </window>
-  
+  {{exch}}
   </div></template>
 <script>
 import { Grid } from "@progress/kendo-vue-grid";
@@ -34,8 +34,8 @@ import "@progress/kendo-theme-default/dist/all.css";
 export default {
   components: {
     Grid: Grid,
-   ExchBar,
     window: Window,
+    ExchBar,
   },
   props: ["exchlist"],
   data() {
