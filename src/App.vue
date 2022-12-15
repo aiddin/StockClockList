@@ -23,6 +23,7 @@ export default {
     };
   },
   methods: {
+    //randomize status and time
     setServerDate() {
       const date1 = new Date();
       date1.setMilliseconds(Math.floor(Math.random() * 8 + 2) * 1000);
