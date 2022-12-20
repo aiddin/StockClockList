@@ -23,7 +23,7 @@
         
       ></grid>
     </window>
-  {{exch}}
+
   </div></template>
 <script>
 import { Grid } from "@progress/kendo-vue-grid";
