@@ -17,16 +17,16 @@ export default {
   watch: {
     stat: {
       handler() {
-        this.test();
+        this.statCheck();
       },
       deep: true,
     },
   },
   created() {
-    this.test();
+    this.statCheck();
   },
   methods: {
-    test() {
+    statCheck() {
       if (this.stat == 0) {
         this.status = {
           message: "OPEN",

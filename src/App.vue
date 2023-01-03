@@ -15,10 +15,10 @@ export default {
         { id: "MYX", name: "Malaysia Exchange ", status: "0", serverDate: date },
         { id: "IDX", name: "Indonesia Exchange ", status: "2", serverDate: date },
         { id: "TSX", name: "Toronto Stock Exchange", status: "1", serverDate: date },
-        // { id: "SGX", name: "Singapore Exchange ", status: "0",serverDate: date,},
-        // { id: "KRX", name: "Korean Exchange", status: "0",serverDate: date, },
-        // { id: "TWSE", name: "Taiwan Stock Exchange ", status: "0",serverDate: date, },
-        // { id: "XAMS", name: "Euronext Amsterdam ", status: "0", serverDate: date,},
+        { id: "SGX", name: "Singapore Exchange ", status: "2", serverDate: date },
+        { id: "KRX", name: "Korean Exchange", status: "0", serverDate: date },
+        { id: "TWSE", name: "Taiwan Stock Exchange ", status: "2", serverDate: date },
+        { id: "XAMS", name: "Euronext Amsterdam ", status: "1", serverDate: date },
       ],
     };
   },
@@ -54,13 +54,27 @@ export default {
           status: stattest2,
           serverDate: date3,
         },
+        { id: "SGX", name: "Singapore Exchange ", status: "2", serverDate: date1 },
+        { id: "KRX", name: "Korean Exchange", status: "0", serverDate: date2 },
+        {
+          id: "TWSE",
+          name: "Taiwan Stock Exchange ",
+          status: "2",
+          serverDate: date3,
+        },
+        {
+          id: "XAMS",
+          name: "Euronext Amsterdam ",
+          status: "1",
+          serverDate: date1,
+        },
       ];
     },
   },
   mounted() {
     setInterval(() => {
       this.setServerDate();
-    }, 4000);
+    }, 1000);
   },
 };
 </script>
