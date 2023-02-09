@@ -85,6 +85,9 @@ export default {
 };
 </script>
 <style>
+::-webkit-scrollbar{
+  display: none;
+}
 .h1 {
   transition: 0.2s;
   font-size: 10vh;
